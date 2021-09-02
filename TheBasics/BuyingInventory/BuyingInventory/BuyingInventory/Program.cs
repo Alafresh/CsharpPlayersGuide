@@ -6,6 +6,7 @@ namespace BuyingInventory
     {
         static void Main(string[] args)
         {
+            float price;
             string name;
             int choice;
             string response;
@@ -14,37 +15,36 @@ namespace BuyingInventory
                 "4 - Clean Water\n5 - Machete\n6 - Canoe\n7 - Food Supplies\n");
             Console.Write("What Number do u want to see the price of? ");
             choice = Convert.ToInt32(Console.ReadLine());
+            if (choice > 7)
+            {
+                Console.WriteLine("That option it no available");
+                Environment.Exit(0);
+            }
+            response = choice switch
+            {
+                1 => "Rope",
+                2 => "Torches",
+                3 => "Climbing Equipment",
+                4 => "Clean Water",
+                5 => "Machete",
+                6 => "Canoe",
+                7 => "Food Supplies",
+            };
+            price = response switch
+            {
+                "Rope" => 10,
+                "Torches" => 15,
+                "Climbing Equipment" => 25,
+                "Clean Water" => 1,
+                "Machete" => 20,
+                "Canoe" => 200,
+                "Food Supplies" => 1,
+            };
             Console.Write("What is your name ");
             name = Console.ReadLine();
             if (name == "juan")
-            {
-                response = choice switch
-                {
-                    1 => "Rope cost 5 gold",
-                    2 => "Torches cost 7.5 gold",
-                    3 => "Climbing Equiment cost 12.5 gold",
-                    4 => "Clean Water cost 0.5 gold",
-                    5 => "Machete cost 10 gold",
-                    6 => "Canoe cost 100 gold",
-                    7 => "Food suplies cost 0.5 gold",
-                    _ => "Apologies. I dont have that one"
-                };
-            }
-            else
-            {
-                response = choice switch
-                {
-                    1 => "Rope cost 10 gold",
-                    2 => "Torches cost 15 gold",
-                    3 => "Climbing Equiment cost 25 gold",
-                    4 => "Clean Water cost 1 gold",
-                    5 => "Machete cost 20 gold",
-                    6 => "Canoe cost 200 gold",
-                    7 => "Food suplies cost 1 gold",
-                    _ => "Apologies. I dont have that one"
-                };
-            }
-            Console.WriteLine(response);
+                price /= 2;
+            Console.WriteLine($"{response} cost {price} gold.");
             //switch (choice)
             //{
             //    case 1:
